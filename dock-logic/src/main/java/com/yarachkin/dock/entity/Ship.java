@@ -74,4 +74,15 @@ public class Ship extends Thread {
         result = 31 * result + uploadingContainersCounts;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "shipId=" + shipId +
+                ", capacity=" + capacity +
+                ", boardContainersCounts=" + boardContainersCounts +
+                ", loadingContainersCounts=" + loadingContainersCounts +
+                ", uploadingContainersCounts=" + uploadingContainersCounts +
+                '}';
+    }
 }
