@@ -28,17 +28,17 @@ public class DockLineValidatorTest {
     }
 
     @Test
-    public void validateValuesHavingCapacityLessThenBoardContainers() throws Exception {
+    public void validateValuesHavingCapacityLessThanBoardContainers() throws Exception {
         assertFalse(DockLineValidator.validate("30 31 20 30"));
     }
 
     @Test
-    public void validateValuesHavingCapacityLessThenLoadingContainers() throws Exception {
+    public void validateValuesHavingCapacityLessThanLoadingContainers() throws Exception {
         assertFalse(DockLineValidator.validate("30 30 31 30"));
     }
 
     @Test
-    public void validateValuesHavingCapacityLessThenUploadingContainers() throws Exception {
+    public void validateValuesHavingCapacityLessThanUploadingContainers() throws Exception {
         assertFalse(DockLineValidator.validate("30 30 15 35"));
     }
 }
