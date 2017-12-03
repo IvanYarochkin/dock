@@ -5,8 +5,6 @@ public class Dock {
     private int dockContainersCounts;
 
     private Dock() {
-        capacity = 150;
-        dockContainersCounts = 60;
     }
 
     private static class SingletonHolder {
@@ -15,6 +13,11 @@ public class Dock {
 
     public static Dock getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    public void initializeCapacityAndDockContainersCounts(int capacity, int dockContainersCounts) {
+        this.capacity = capacity;
+        this.dockContainersCounts = dockContainersCounts;
     }
 
     int getCapacity() {
