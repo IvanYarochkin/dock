@@ -19,7 +19,7 @@ public class DockParser {
                 ship.setShipId(IdGenerator.generateShipId());
                 ship.setCapacity(Integer.parseInt(parsedLine.get(0)));
                 ship.setBoardContainersCounts(Integer.parseInt(parsedLine.get(1)));
-                ship.setUploadingContainersCounts(Integer.parseInt(parsedLine.get(2)));
+                ship.setUnloadingContainersCounts(Integer.parseInt(parsedLine.get(2)));
                 ship.setLoadingContainersCounts(Integer.parseInt(parsedLine.get(3)));
                 ships.add(ship);
             }

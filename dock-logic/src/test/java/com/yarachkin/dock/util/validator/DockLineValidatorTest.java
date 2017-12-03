@@ -38,7 +38,7 @@ public class DockLineValidatorTest {
     }
 
     @Test
-    public void validateValuesHavingCapacityLessThanUploadingContainers() throws Exception {
+    public void validateValuesHavingCapacityLessThanUnloadingContainers() throws Exception {
         assertFalse(DockLineValidator.validate("30 30 15 35"));
     }
 }

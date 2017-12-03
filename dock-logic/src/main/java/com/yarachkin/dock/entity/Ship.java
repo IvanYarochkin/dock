@@ -5,7 +5,7 @@ public class Ship extends Thread {
     private int capacity;
     private int boardContainersCounts;
     private int loadingContainersCounts;
-    private int uploadingContainersCounts;
+    private int unloadingContainersCounts;
 
     public void setShipId(long shipId) {
         this.shipId = shipId;
@@ -19,8 +19,8 @@ public class Ship extends Thread {
         this.boardContainersCounts = boardContainersCounts;
     }
 
-    public void setUploadingContainersCounts(int uploadingContainersCounts) {
-        this.uploadingContainersCounts = uploadingContainersCounts;
+    public void setUnloadingContainersCounts(int unloadingContainersCounts) {
+        this.unloadingContainersCounts = unloadingContainersCounts;
     }
 
     public void setLoadingContainersCounts(int loadingContainersCounts) {
@@ -41,18 +41,18 @@ public class Ship extends Thread {
         return loadedContainers;
     }
 
-    public int uploadFromShipContainers(int containersCounts) {
-        int uploadedContainers;
-        if ( boardContainersCounts < containersCounts || containersCounts > uploadingContainersCounts ) {
-            boardContainersCounts -= uploadingContainersCounts;
-            uploadedContainers = uploadingContainersCounts;
-            uploadingContainersCounts = 0;
+    public int unloadFromShipContainers(int containersCounts) {
+        int unloadedContainers;
+        if ( boardContainersCounts < containersCounts || containersCounts > unloadingContainersCounts ) {
+            boardContainersCounts -= unloadingContainersCounts;
+            unloadedContainers = unloadingContainersCounts;
+            unloadingContainersCounts = 0;
         } else {
             boardContainersCounts -= containersCounts;
-            uploadingContainersCounts -= containersCounts;
-            uploadedContainers = containersCounts;
+            unloadingContainersCounts -= containersCounts;
+            unloadedContainers = containersCounts;
         }
-        return uploadedContainers;
+        return unloadedContainers;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Ship extends Thread {
         if ( capacity != ship.capacity ) return false;
         if ( boardContainersCounts != ship.boardContainersCounts ) return false;
         if ( loadingContainersCounts != ship.loadingContainersCounts ) return false;
-        return uploadingContainersCounts == ship.uploadingContainersCounts;
+        return unloadingContainersCounts == ship.unloadingContainersCounts;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Ship extends Thread {
         result = 31 * result + capacity;
         result = 31 * result + boardContainersCounts;
         result = 31 * result + loadingContainersCounts;
-        result = 31 * result + uploadingContainersCounts;
+        result = 31 * result + unloadingContainersCounts;
         return result;
     }
 
@@ -90,7 +90,7 @@ public class Ship extends Thread {
                 ", capacity=" + capacity +
                 ", boardContainersCounts=" + boardContainersCounts +
                 ", loadingContainersCounts=" + loadingContainersCounts +
-                ", uploadingContainersCounts=" + uploadingContainersCounts +
+                ", unloadingContainersCounts=" + unloadingContainersCounts +
                 '}';
     }
 }
