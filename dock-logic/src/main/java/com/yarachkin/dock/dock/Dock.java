@@ -1,4 +1,4 @@
-package com.yarachkin.dock.entity;
+package com.yarachkin.dock.dock;
 
 public class Dock {
     private int capacity;
