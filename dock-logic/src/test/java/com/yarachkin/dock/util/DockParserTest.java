@@ -51,4 +51,16 @@ public class DockParserTest {
     public void parseTest() throws Exception {
         assertEquals(DockParser.parse(inputDate), result);
     }
+
+    @Test
+    public void parseMoreValueInLineThanFourTest() throws Exception {
+        inputDate.add("50 30 20 20 30");
+        assertEquals(DockParser.parse(inputDate), result);
+    }
+
+    @Test
+    public void parseLessValueInLineThanFourTest() throws Exception {
+        inputDate.add("50 30 20");
+        assertEquals(DockParser.parse(inputDate), result);
+    }
 }
