@@ -27,15 +27,15 @@ public class DockParserTest {
         firstShip.setShipId(1);
         firstShip.setCapacity(30);
         firstShip.setBoardContainersCounts(5);
-        firstShip.setLoadingContainersCounts(3);
-        firstShip.setUploadingContainersCounts(15);
+        firstShip.setUploadingContainersCounts(3);
+        firstShip.setLoadingContainersCounts(15);
 
         Ship secondShip = new Ship();
         secondShip.setShipId(1);
         secondShip.setCapacity(15);
         secondShip.setBoardContainersCounts(5);
-        secondShip.setLoadingContainersCounts(5);
-        secondShip.setUploadingContainersCounts(15);
+        secondShip.setUploadingContainersCounts(5);
+        secondShip.setLoadingContainersCounts(15);
 
         result.add(firstShip);
         result.add(secondShip);

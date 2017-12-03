@@ -47,6 +47,34 @@ public class Ship extends Thread {
         this.loadingContainersCounts = loadingContainersCounts;
     }
 
+    public int loadInShipContainers(int containersCounts) {
+        int loadedContainers;
+        if ( capacity - boardContainersCounts < containersCounts || containersCounts > loadingContainersCounts ) {
+            boardContainersCounts += loadingContainersCounts;
+            loadedContainers = loadingContainersCounts;
+            loadingContainersCounts = 0;
+        } else {
+            boardContainersCounts += containersCounts;
+            loadingContainersCounts -= containersCounts;
+            loadedContainers = containersCounts;
+        }
+        return loadedContainers;
+    }
+
+    public int uploadFromShipContainers(int containersCounts) {
+        int uploadedContainers;
+        if ( boardContainersCounts < containersCounts || containersCounts > uploadingContainersCounts ) {
+            boardContainersCounts -= uploadingContainersCounts;
+            uploadedContainers = uploadingContainersCounts;
+            uploadingContainersCounts = 0;
+        } else {
+            boardContainersCounts -= containersCounts;
+            uploadingContainersCounts -= containersCounts;
+            uploadedContainers = containersCounts;
+        }
+        return uploadedContainers;
+    }
+
     @Override
     public void run() {
     }

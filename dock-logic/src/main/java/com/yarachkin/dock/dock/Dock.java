@@ -5,6 +5,8 @@ public class Dock {
     private int dockContainersCounts;
 
     private Dock() {
+        capacity = 150;
+        dockContainersCounts = 60;
     }
 
     private static class SingletonHolder {
