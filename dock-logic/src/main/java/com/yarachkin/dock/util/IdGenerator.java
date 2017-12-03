@@ -1,4 +1,4 @@
-package com.yarachkin.util;
+package com.yarachkin.dock.util;
 
 public class IdGenerator {
     private static long shipId = 0;
