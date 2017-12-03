@@ -23,19 +23,9 @@ public class DockParserTest {
         inputDate.add("30 5 3 15");
         inputDate.add("15 5 5 15");
 
-        Ship firstShip = new Ship();
-        firstShip.setShipId(1);
-        firstShip.setCapacity(30);
-        firstShip.setBoardContainersCounts(5);
-        firstShip.setUnloadingContainersCounts(3);
-        firstShip.setLoadingContainersCounts(15);
+        Ship firstShip = new Ship(1, 30, 5, 3, 15);
 
-        Ship secondShip = new Ship();
-        secondShip.setShipId(1);
-        secondShip.setCapacity(15);
-        secondShip.setBoardContainersCounts(5);
-        secondShip.setUnloadingContainersCounts(5);
-        secondShip.setLoadingContainersCounts(15);
+        Ship secondShip = new Ship(1, 15, 5, 5, 15);
 
         result.add(firstShip);
         result.add(secondShip);

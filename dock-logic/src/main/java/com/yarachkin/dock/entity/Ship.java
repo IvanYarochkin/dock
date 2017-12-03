@@ -4,26 +4,15 @@ public class Ship extends Thread {
     private long shipId;
     private int capacity;
     private int boardContainersCounts;
-    private int loadingContainersCounts;
     private int unloadingContainersCounts;
+    private int loadingContainersCounts;
 
-    public void setShipId(long shipId) {
+    public Ship(long shipId, int capacity, int boardContainersCounts, int unloadingContainersCounts, int loadingContainersCounts) {
+        super();
         this.shipId = shipId;
-    }
-
-    public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public void setBoardContainersCounts(int boardContainersCounts) {
         this.boardContainersCounts = boardContainersCounts;
-    }
-
-    public void setUnloadingContainersCounts(int unloadingContainersCounts) {
         this.unloadingContainersCounts = unloadingContainersCounts;
-    }
-
-    public void setLoadingContainersCounts(int loadingContainersCounts) {
         this.loadingContainersCounts = loadingContainersCounts;
     }
 

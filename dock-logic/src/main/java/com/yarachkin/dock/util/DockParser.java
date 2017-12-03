@@ -15,12 +15,8 @@ public class DockParser {
         lines.forEach(line -> {
             if ( DockLineValidator.validate(line) ) {
                 List<String> parsedLine = Arrays.asList(line.split("\\s"));
-                Ship ship = new Ship();
-                ship.setShipId(IdGenerator.generateShipId());
-                ship.setCapacity(Integer.parseInt(parsedLine.get(0)));
-                ship.setBoardContainersCounts(Integer.parseInt(parsedLine.get(1)));
-                ship.setUnloadingContainersCounts(Integer.parseInt(parsedLine.get(2)));
-                ship.setLoadingContainersCounts(Integer.parseInt(parsedLine.get(3)));
+                Ship ship = new Ship(IdGenerator.generateShipId(), Integer.parseInt(parsedLine.get(0)), Integer.parseInt(parsedLine.get(1)),
+                        Integer.parseInt(parsedLine.get(2)), Integer.parseInt(parsedLine.get(3)));
                 ships.add(ship);
             }
         });
