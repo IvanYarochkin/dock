@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class DockFileHelperTest {
     private String filePath;
