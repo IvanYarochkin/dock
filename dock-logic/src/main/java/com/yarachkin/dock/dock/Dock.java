@@ -15,19 +15,19 @@ public class Dock {
         return SingletonHolder.INSTANCE;
     }
 
-    public int getCapacity() {
+    int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public int getDockContainersCounts() {
+    int getDockContainersCounts() {
         return dockContainersCounts;
     }
 
-    public void setDockContainersCounts(int dockContainersCounts) {
+    void setDockContainersCounts(int dockContainersCounts) {
         this.dockContainersCounts = dockContainersCounts;
     }
 }
