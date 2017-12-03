@@ -50,4 +50,28 @@ public class Ship extends Thread {
     @Override
     public void run() {
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if ( this == o ) return true;
+        if ( !(o instanceof Ship) ) return false;
+
+        Ship ship = (Ship) o;
+
+        if ( shipId != ship.shipId ) return false;
+        if ( capacity != ship.capacity ) return false;
+        if ( boardContainersCounts != ship.boardContainersCounts ) return false;
+        if ( loadingContainersCounts != ship.loadingContainersCounts ) return false;
+        return uploadingContainersCounts == ship.uploadingContainersCounts;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (shipId ^ (shipId >>> 32));
+        result = 31 * result + capacity;
+        result = 31 * result + boardContainersCounts;
+        result = 31 * result + loadingContainersCounts;
+        result = 31 * result + uploadingContainersCounts;
+        return result;
+    }
 }
