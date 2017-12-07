@@ -2,7 +2,10 @@ package com.yarachkin.dock.dock;
 
 import com.yarachkin.dock.entity.Ship;
 
-public class Dock {
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+class Dock {
     private int capacity;
     private int dockContainersCounts;
     private int pierCounts;
@@ -24,28 +27,21 @@ public class Dock {
         this.pierCounts = pierCounts;
     }
 
-    void loadOrUnloadContainers(Ship ship) {
+    public synchronized void loadOrUnloadContainers(Ship ship) {
+        Lock lock = new ReentrantLock();
+
+        lock.lock();
         int loadingAvailableContainers = capacity - dockContainersCounts;
         int unloadedFromShipContainers = ship.unloadFromShipContainers(loadingAvailableContainers);
         dockContainersCounts += unloadedFromShipContainers;
 
         int loadingInShipContainers = ship.loadInShipContainers(dockContainersCounts);
         dockContainersCounts -= loadingInShipContainers;
-    }
 
-    int getCapacity() {
-        return capacity;
-    }
-
-    void setCapacity(int capacity) {
-        this.capacity = capacity;
+        lock.unlock();
     }
 
     int getDockContainersCounts() {
         return dockContainersCounts;
-    }
-
-    void setDockContainersCounts(int dockContainersCounts) {
-        this.dockContainersCounts = dockContainersCounts;
     }
 }

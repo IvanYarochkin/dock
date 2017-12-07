@@ -6,8 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.testng.Assert.assertEquals;
 
@@ -25,11 +23,9 @@ public class DockParserTest {
         inputDate.add("30 5 3 15");
         inputDate.add("15 5 5 15");
 
-        Lock lock = new ReentrantLock();
+        Ship firstShip = new Ship(1, 30, 5, 3, 15);
 
-        Ship firstShip = new Ship(1, 30, 5, 3, 15, lock);
-
-        Ship secondShip = new Ship(1, 15, 5, 5, 15, lock);
+        Ship secondShip = new Ship(1, 15, 5, 5, 15);
 
         result.add(firstShip);
         result.add(secondShip);
