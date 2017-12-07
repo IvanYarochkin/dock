@@ -1,5 +1,7 @@
 package com.yarachkin.dock.dock;
 
+import com.yarachkin.dock.entity.Ship;
+
 public class Dock {
     private int capacity;
     private int dockContainersCounts;
@@ -18,6 +20,15 @@ public class Dock {
     public void initializeCapacityAndDockContainersCounts(int capacity, int dockContainersCounts) {
         this.capacity = capacity;
         this.dockContainersCounts = dockContainersCounts;
+    }
+
+    void loadOrUnloadContainers(Ship ship) {
+        int loadingAvailableContainers = capacity - dockContainersCounts;
+        int unloadedFromShipContainers = ship.unloadFromShipContainers(loadingAvailableContainers);
+        dockContainersCounts += unloadedFromShipContainers;
+
+        int loadingInShipContainers = ship.loadInShipContainers(dockContainersCounts);
+        dockContainersCounts -= loadingInShipContainers;
     }
 
     int getCapacity() {
