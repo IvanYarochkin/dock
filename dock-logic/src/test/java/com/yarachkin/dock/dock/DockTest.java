@@ -11,7 +11,7 @@ public class DockTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        Dock.getInstance().initializeCapacityAndDockContainersCounts(150, 60);
+        Dock.getInstance().initializeCapacityAndDockContainersCounts(150, 60, 3);
         ship = new Ship(1, 40, 20, 20, 15);
     }
 

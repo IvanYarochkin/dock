@@ -5,6 +5,7 @@ import com.yarachkin.dock.entity.Ship;
 public class Dock {
     private int capacity;
     private int dockContainersCounts;
+    private int pierCounts;
 
     private Dock() {
     }
@@ -17,9 +18,10 @@ public class Dock {
         return SingletonHolder.INSTANCE;
     }
 
-    public void initializeCapacityAndDockContainersCounts(int capacity, int dockContainersCounts) {
+    public void initializeCapacityAndDockContainersCounts(int capacity, int dockContainersCounts, int pierCounts) {
         this.capacity = capacity;
         this.dockContainersCounts = dockContainersCounts;
+        this.pierCounts = pierCounts;
     }
 
     void loadOrUnloadContainers(Ship ship) {
