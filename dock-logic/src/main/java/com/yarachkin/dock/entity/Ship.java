@@ -1,19 +1,23 @@
 package com.yarachkin.dock.entity;
 
+import java.util.concurrent.locks.Lock;
+
 public class Ship extends Thread {
     private long shipId;
     private int capacity;
     private int boardContainersCounts;
     private int unloadingContainersCounts;
     private int loadingContainersCounts;
+    private Lock lock;
 
-    public Ship(long shipId, int capacity, int boardContainersCounts, int unloadingContainersCounts, int loadingContainersCounts) {
+    public Ship(long shipId, int capacity, int boardContainersCounts, int unloadingContainersCounts, int loadingContainersCounts, Lock lock) {
         super();
         this.shipId = shipId;
         this.capacity = capacity;
         this.boardContainersCounts = boardContainersCounts;
         this.unloadingContainersCounts = unloadingContainersCounts;
         this.loadingContainersCounts = loadingContainersCounts;
+        this.lock = lock;
     }
 
     public int loadInShipContainers(int containersCounts) {
