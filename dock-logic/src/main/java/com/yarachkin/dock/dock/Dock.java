@@ -2,15 +2,21 @@ package com.yarachkin.dock.dock;
 
 import com.yarachkin.dock.entity.Ship;
 
+import java.util.ArrayDeque;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-class Dock {
+public class Dock {
     private int capacity;
     private int dockContainersCounts;
-    private int pierCounts;
+    private Lock loadOrUnloadLock;
+    private ArrayDeque<Pier> freePiers;
+    private ArrayDeque<Pier> busyPiers;
 
     private Dock() {
+        freePiers = new ArrayDeque<>();
+        busyPiers = new ArrayDeque<>();
+        loadOrUnloadLock = new ReentrantLock();
     }
 
     private static class SingletonHolder {
@@ -24,21 +30,23 @@ class Dock {
     public void initializeCapacityAndDockContainersCounts(int capacity, int dockContainersCounts, int pierCounts) {
         this.capacity = capacity;
         this.dockContainersCounts = dockContainersCounts;
-        this.pierCounts = pierCounts;
+        if ( freePiers.isEmpty() && busyPiers.isEmpty() ) {
+            for (int i = 0; i < pierCounts; i++) {
+                freePiers.push(new Pier());
+            }
+        }
     }
 
-    public synchronized void loadOrUnloadContainers(Ship ship) {
-        Lock lock = new ReentrantLock();
+    public void loadOrUnloadContainers(Ship ship) {
 
-        lock.lock();
+        loadOrUnloadLock.lock();
         int loadingAvailableContainers = capacity - dockContainersCounts;
         int unloadedFromShipContainers = ship.unloadFromShipContainers(loadingAvailableContainers);
         dockContainersCounts += unloadedFromShipContainers;
 
         int loadingInShipContainers = ship.loadInShipContainers(dockContainersCounts);
         dockContainersCounts -= loadingInShipContainers;
-
-        lock.unlock();
+        loadOrUnloadLock.unlock();
     }
 
     int getDockContainersCounts() {
