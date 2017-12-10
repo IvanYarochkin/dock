@@ -1,6 +1,15 @@
 package com.yarachkin.dock.entity;
 
+import com.yarachkin.dock.dock.Dock;
+import com.yarachkin.dock.dock.Pier;
+import com.yarachkin.dock.exception.LogicDockException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Ship extends Thread {
+    private static final Logger LOGGER = LogManager.getRootLogger();
+
     private long shipId;
     private int capacity;
     private int boardContainersCounts;
@@ -18,6 +27,7 @@ public class Ship extends Thread {
 
     public int loadInShipContainers(int containersCounts) {
         int loadedContainers;
+
         if ( capacity - boardContainersCounts < containersCounts || containersCounts > loadingContainersCounts ) {
             boardContainersCounts += loadingContainersCounts;
             loadedContainers = loadingContainersCounts;
@@ -46,6 +56,13 @@ public class Ship extends Thread {
 
     @Override
     public void run() {
+        try {
+            Pier pier = Dock.getInstance().acquirePier();
+            pier.loadOrUnloadContainers(this);
+            pier.close();
+        } catch (LogicDockException e) {
+            LOGGER.log(Level.INFO, e);
+        }
     }
 
     @Override
